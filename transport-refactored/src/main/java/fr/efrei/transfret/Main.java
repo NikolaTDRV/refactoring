@@ -9,7 +9,7 @@ public class Main {
         // seul endroit où l'on construit le graphe d'objets
         Notificateur notificateur = new Notificateur(new EmailConsole(), new SmsConsole());
         ServiceClient serviceClient = new ServiceClient(new ClientRepositoryMemoire(), new ValidateurClient(), notificateur);
-        ServiceExpedition serviceExpedition = new ServiceExpedition(new ExpeditionRepositoryMemoire(), new CalculateurPrix(),
+        ServiceExpedition serviceExpedition = new ServiceExpedition(new ExpeditionRepositoryMemoire(), new CalculateurPrix(AssembleurPrix.avecHorsGabarit()),
                 new AffectationVehicule(Flotte.parDefaut()), new ValidateurExpedition(), new EstimateurDelai(), notificateur);
 
         System.out.println("\n----- Clients -----");

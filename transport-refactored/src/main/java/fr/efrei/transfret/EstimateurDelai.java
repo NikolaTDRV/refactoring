@@ -12,6 +12,8 @@ public class EstimateurDelai {
     private static final int DELAI_AIR_JOURS = 1;
     private static final int DELAI_AIR_LONG_COURRIER_JOURS = 2;
     private static final int SEUIL_LONG_COURRIER_AIR_KM = 3000;
+    private static final double KM_PAR_JOUR_FLUVIAL = 360.0;
+    private static final int JOURS_MANUTENTION_FLUVIAL = 1;
     private static final int DELAI_MINIMUM_JOURS = 1;
 
     // retourne le délai de livraison en jours
@@ -37,6 +39,9 @@ public class EstimateurDelai {
                 jours = DELAI_AIR_JOURS;
                 if (distance > SEUIL_LONG_COURRIER_AIR_KM) jours = DELAI_AIR_LONG_COURRIER_JOURS;
                 if (urgent) jours = DELAI_AIR_JOURS;
+                break;
+            case FLUVIAL:
+                jours = (int) Math.ceil(distance / KM_PAR_JOUR_FLUVIAL) + JOURS_MANUTENTION_FLUVIAL;
                 break;
         }
         if (jours < DELAI_MINIMUM_JOURS) jours = DELAI_MINIMUM_JOURS;

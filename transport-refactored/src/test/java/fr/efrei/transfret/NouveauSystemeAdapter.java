@@ -42,7 +42,8 @@ public class NouveauSystemeAdapter implements SystemeTransport {
         sms = new SmsConsole();
         Notificateur notificateur = new Notificateur(email, sms);
         serviceClient = new ServiceClient(clients, new ValidateurClient(), notificateur);
-        serviceExpedition = new ServiceExpedition(expeditions, new CalculateurPrix(),
+        // le contrat décrit les règles historiques : pas de supplément « hors gabarit »
+        serviceExpedition = new ServiceExpedition(expeditions, new CalculateurPrix(AssembleurPrix.tarifsHistoriques()),
                 new AffectationVehicule(Flotte.parDefaut()), new ValidateurExpedition(), new EstimateurDelai(), notificateur);
         generateurFacture = new GenerateurFacture();
     }
