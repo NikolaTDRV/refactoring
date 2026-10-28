@@ -1,0 +1,15 @@
+package fr.efrei.transfret;
+
+import java.util.List;
+
+public interface ExpeditionRepository {
+
+    void sauvegarder(Expedition expedition);
+
+    void mettreAJourStatut(Expedition expedition);
+
+    // retourne null si aucune expédition n'a cet identifiant
+    Expedition trouver(String id);
+
+    List<Expedition> toutes();
+}
